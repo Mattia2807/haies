@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 928px;
+            height: 835px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Haies_1.js"></script>
+        <script src="data/pointhaies_2.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[43.90585696721764,4.881928632821905],[43.909662002695214,4.887750369097788]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_lycee_2022_georeftif_0');
+        map.getPane('pane_lycee_2022_georeftif_0').style.zIndex = 400;
+        var img_lycee_2022_georeftif_0 = 'data/lycee_2022_georeftif_0.png';
+        var img_bounds_lycee_2022_georeftif_0 = [[43.90502195378139,4.867011490363534],[43.91662841322215,4.887307481622088]];
+        var layer_lycee_2022_georeftif_0 = new L.imageOverlay(img_lycee_2022_georeftif_0,
+                                              img_bounds_lycee_2022_georeftif_0,
+                                              {pane: 'pane_lycee_2022_georeftif_0'});
+        bounds_group.addLayer(layer_lycee_2022_georeftif_0);
+        map.addLayer(layer_lycee_2022_georeftif_0);
+        function pop_Haies_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nb point'] !== null ? autolinker.link(feature.properties['Nb point'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Composit°'] !== null ? autolinker.link(feature.properties['Composit°'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nb espèces'] !== null ? autolinker.link(feature.properties['Nb espèces'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['strates'] !== null ? autolinker.link(feature.properties['strates'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fruits'] !== null ? autolinker.link(feature.properties['Fruits'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fleurs'] !== null ? autolinker.link(feature.properties['Fleurs'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Arb Morts'] !== null ? autolinker.link(feature.properties['Arb Morts'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Brch Morte'] !== null ? autolinker.link(feature.properties['Brch Morte'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Zone herbe'] !== null ? autolinker.link(feature.properties['Zone herbe'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['haute'] !== null ? autolinker.link(feature.properties['haute'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Basse'] !== null ? autolinker.link(feature.properties['Basse'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['avec fleur'] !== null ? autolinker.link(feature.properties['avec fleur'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nb fleurs'] !== null ? autolinker.link(feature.properties['nb fleurs'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Talusfosse'] !== null ? autolinker.link(feature.properties['Talusfosse'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['enherbé'] !== null ? autolinker.link(feature.properties['enherbé'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sol nu'] !== null ? autolinker.link(feature.properties['sol nu'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['avc fleurs'] !== null ? autolinker.link(feature.properties['avc fleurs'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nbr fleurs'] !== null ? autolinker.link(feature.properties['nbr fleurs'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['eau'] !== null ? autolinker.link(feature.properties['eau'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['note'] !== null ? autolinker.link(feature.properties['note'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Haies_1_0() {
+            return {
+                pane: 'pane_Haies_1',
+                opacity: 1,
+                color: 'rgba(255,1,9,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Haies_1');
+        map.getPane('pane_Haies_1').style.zIndex = 401;
+        map.getPane('pane_Haies_1').style['mix-blend-mode'] = 'normal';
+        var layer_Haies_1 = new L.geoJson(json_Haies_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Haies_1',
+            layerName: 'layer_Haies_1',
+            pane: 'pane_Haies_1',
+            onEachFeature: pop_Haies_1,
+            style: style_Haies_1_0,
+        });
+        bounds_group.addLayer(layer_Haies_1);
+        map.addLayer(layer_Haies_1);
+        function pop_pointhaies_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['num point'] !== null ? autolinker.link(feature.properties['num point'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Latitude'] !== null ? autolinker.link(feature.properties['Latitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['longitude'] !== null ? autolinker.link(feature.properties['longitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['qrcode'] !== null ? '<img src="images/' + String(feature.properties['qrcode']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_pointhaies_2_0() {
+            return {
+                pane: 'pane_pointhaies_2',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_pointhaies_2');
+        map.getPane('pane_pointhaies_2').style.zIndex = 402;
+        map.getPane('pane_pointhaies_2').style['mix-blend-mode'] = 'normal';
+        var layer_pointhaies_2 = new L.geoJson(json_pointhaies_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_pointhaies_2',
+            layerName: 'layer_pointhaies_2',
+            pane: 'pane_pointhaies_2',
+            onEachFeature: pop_pointhaies_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_pointhaies_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_pointhaies_2);
+        map.addLayer(layer_pointhaies_2);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>
